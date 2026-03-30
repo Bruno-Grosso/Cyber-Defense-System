@@ -14,6 +14,7 @@ Process* create_process(int pid, int ram_mb, int threat_level);
 Process* insert_process(Process* head, int pid, int ram_mb, int threat_level);
 void list_process(Process* head);
 void free_system(Process* head);
+Process* quarantine_malware(Process* head);
 
 #endif
 

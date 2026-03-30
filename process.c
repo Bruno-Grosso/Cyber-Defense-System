@@ -54,7 +54,52 @@ void list_process(Process*head){
   printf("----------------------------------\n\n");
 }
 
-// 4. Clean the System
+// 4. Eliminate the Worst Vírus
+Process* quarantine_malware(Process*head){
+  Process* current = head;
+  Process* target = head;
+  Process* prev = NULL;
+  Process* target_prev = NULL;
+  int suspect_process = 0;
+  
+  while(current != NULL){
+
+    if(current->threat_level >= 8){
+      suspect_process++;
+      if(current->threat_level > target->threat_level){
+        target = current;
+        target_prev = prev;
+      } 
+    }
+    prev = current;
+    current = current->next;
+
+  }
+  
+  if(suspect_process > 0){
+
+    printf("[DEFENSE] The Virus with %d of PID and with %d of threat_level was Eliminated \n", target->pid, target->threat_level);
+
+    if(target == head){
+      head = head->next;
+      free(target);
+    } else{
+      target_prev->next = target->next;
+      free(target);
+    }
+    suspect_process--;
+    
+    if(suspect_process > 0){
+      head = quarantine_malware(head);
+    }
+
+  }
+
+  return head;
+    
+}
+
+// 5. Clean the System
 void free_system(Process*head){
   Process*current = head;
 

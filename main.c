@@ -9,14 +9,14 @@ int main(){
   printf("Booting Cyber-Defense System...\n\n");
 
   //start the simulation
-  system_monitor = insert_process(system_monitor, 104, 150, 0); //secure process
-  system_monitor = insert_process(system_monitor, 2048, 45, 2); //web browser
-  system_monitor = insert_process(system_monitor, 666, 500, 10); //critical malware
-  system_monitor = insert_process(system_monitor, 421, 320, 4);
-  system_monitor = insert_process(system_monitor, 542, 940, 9);
-  system_monitor = insert_process(system_monitor, 132, 40, 1);
-  system_monitor = insert_process(system_monitor, 4643, 150, 7);
-  system_monitor = insert_process(system_monitor, 34, 575, 8);
+  system_monitor = insert_process(system_monitor, "System", 104, 150, 0); 
+  system_monitor = insert_process(system_monitor, "Browser", 2048, 45, 2); 
+  system_monitor = insert_process(system_monitor, "Malware_X", 666, 500, 10);
+  system_monitor = insert_process(system_monitor, "Discord", 421, 320, 4);
+  system_monitor = insert_process(system_monitor, "Miner_Bot", 542, 940, 9);
+  system_monitor = insert_process(system_monitor, "Kernel", 132, 40, 1);
+  system_monitor = insert_process(system_monitor, "Spyware", 4643, 150, 7);
+  system_monitor = insert_process(system_monitor, "Ransomware", 34, 575, 8);
   
   //impress informations
   list_process(system_monitor);

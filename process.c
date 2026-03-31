@@ -1,16 +1,20 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "process.h"
 
 // 1. Allocate memory for a new process in the Heap
-Process* create_process(int pid, int ram_mb, int threat_level){
+Process* create_process(char name[30], int pid, int ram_mb, int threat_level){
   Process* new_node = (Process*)malloc(sizeof(Process));
     
   if(new_node == NULL){
     printf("[ERROR] Critical memory allocation failure. \n");
     return NULL;
   }
-    
+  
+  strncpy(new_node->name, name, sizeof(new_node->name) - 1);
+
+  new_node->name[sizeof(new_node->name) - 1] = '\0';
   new_node->pid = pid;
   new_node->ram_mb = ram_mb;
   new_node->threat_level = threat_level;
@@ -20,8 +24,8 @@ Process* create_process(int pid, int ram_mb, int threat_level){
 }
 
 // 2. Insert at the linked list
-Process* insert_process(Process* head, int pid, int ram_mb, int threat_level){
-  Process* new_node = create_process(pid, ram_mb, threat_level);
+Process* insert_process(Process* head, char name[30], int pid, int ram_mb, int threat_level){
+  Process* new_node = create_process(name, pid, ram_mb, threat_level);
 
   if(new_node == NULL){
     return head;
@@ -43,11 +47,11 @@ void list_process(Process*head){
   Process*current = head;
 
   printf("\n>>> ACTIVE PROCESS MONITOR <<<\n");
-  printf("| PID\t| RAM (MB)\t| THREAT |\n");
+  printf("| NAME\t\t| PID\t| RAM (MB)\t| THREAT |\n");
   printf("----------------------------------\n");
 
   while(current != NULL){
-    printf("| %d\t| %d\t\t| %d\t | \n", current->pid, current->ram_mb, current->threat_level);
+    printf("| %s \t\t| %d\t| %d\t\t| %d\t | \n", current->name, current->pid, current->ram_mb, current->threat_level);
     current = current->next;
   }
   
@@ -78,7 +82,7 @@ Process* quarantine_malware(Process*head){
   
   if(suspect_process > 0){
 
-    printf("[DEFENSE] The Virus with %d of PID and with %d of threat_level was Eliminated \n", target->pid, target->threat_level);
+    printf("[DEFENSE] The Virus with name %s and with %d of PID and with %d of threat_level was Eliminated \n",target->name, target->pid, target->threat_level);
 
     if(target == head){
       head = head->next;

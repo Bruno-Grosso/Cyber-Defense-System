@@ -14,9 +14,9 @@ typedef struct Process {
 Process* create_process(char name[30], int pid, int ram_mb, int threat_level);
 Process* insert_process(Process* head, char name[30], int pid, int ram_mb, int threat_level);
 Process* quarantine_malware(Process* head); // first elimination, threat_level dependent
-Process* merge_sort(Process* head, int criteria); //0 = threat_level, 1 = pid, 2 = ram_mb
+Process* selection_sort(Process* head, int criteria); //0 = threat_level, 1 = pid, 2 = ram_mb
+Process* list_process(Process* head);
 Process* security_triage(Process* head); //seconde elimination, ram_mb dependent
-void list_process(Process* head);
 void free_system(Process* head);
 
 

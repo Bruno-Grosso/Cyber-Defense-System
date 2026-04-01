@@ -24,6 +24,12 @@ int main(){
 
   //eliminate virus
   system_monitor = quarantine_malware(system_monitor);
+  
+  //impress informations
+  system_monitor = list_process(system_monitor);
+
+  //verify possible virus
+  system_monitor = security_triage(system_monitor);
 
   while(keep_going == 1){
     //impress information again

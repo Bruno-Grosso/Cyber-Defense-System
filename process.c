@@ -165,7 +165,51 @@ Process* quarantine_malware(Process*head){
     
 }
 
-// 6. Clean the System
+// 6. Second Elimation to Virus above or equal 5 Threat Level 
+Process* security_triage(Process* head){
+  Process* current = head;
+  Process* temp = current;
+  Process* prev = NULL;
+  int choice = 0;
+
+  printf("\n--- [MANUAL TRIAGE] ANALYZING SUSPECTS ---\n");
+
+  while(current != NULL){
+    if(current->threat_level >= 5){
+      printf("[SECURE] Suspect Found: %s (PID: %d) | (RAM (MB): %d) | Threat: %d\n", current->name, current->pid, current->ram_mb, current->threat_level); 
+      printf(">> Eliminate this process? (0) No, (1) Yes: ");
+      scanf("%d", &choice);
+
+      if(choice == 1){
+        printf("[SECURE] Elimate this process. \n");
+        temp = current;
+        
+        if(current == head) {
+          head = current->next;
+        } else{
+          prev->next = current->next;
+        }
+
+        current = current->next;
+        free(temp);
+        
+      } else{
+          current = current->next;
+      } 
+
+    } else{
+        prev = current;
+        current = current->next;
+    }
+
+  }
+
+  printf("[INFO] Complete the Security Triage.\n");
+  return head;
+
+}
+
+// 7. Clean the System
 void free_system(Process*head){
   Process*current = head;
 

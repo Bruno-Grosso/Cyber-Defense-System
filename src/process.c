@@ -186,22 +186,18 @@ Process* security_triage(Process* head){
         
         if(current == head) {
           head = current->next;
+          current = head;
         } else{
           prev->next = current->next;
+          current = current->next;
         }
 
-        current = current->next;
-        free(temp);
-        
-      } else{
-          current = current->next;
-      } 
-
-    } else{
+        free(temp); 
+        continue;
+      }
+    }
         prev = current;
         current = current->next;
-    }
-
   }
 
   printf("[INFO] Complete the Security Triage.\n");

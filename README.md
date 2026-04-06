@@ -47,7 +47,4 @@ In the terminal, run make to compile the source.
 
 Execute ./bin/defense_system to launch the monitor.
 
-
-
-
-Developed with 💻 by Bruno Grosso
+## Developed with 💻 by Bruno Grosso

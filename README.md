@@ -1,4 +1,4 @@
-# 🛡️ Cyber-Defense System (Phase 1)
+# 🛡️ Cyber-Defense System
 
 A low-level process monitoring engine developed in **C**. This project simulates a digital biosecurity environment, utilizing **Dynamic Linked Lists** to manage system entities in real-time, with a rigorous focus on memory management and algorithmic efficiency.
 
